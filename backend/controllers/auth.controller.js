@@ -1,5 +1,6 @@
 import User from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
+import generateTokenAndSetCookie from '../utils/generateToken.js';
 
 export const signUp = async (req, res) => {
   try {
@@ -28,6 +29,7 @@ export const signUp = async (req, res) => {
       profilePic: gender == 'male' ? boyProfilePic : girlProfilePic,
     });
 
+    generateTokenAndSetCookie(newUser._id, res);
     await newUser.save();
 
     res.status(201).json({
@@ -42,8 +44,12 @@ export const signUp = async (req, res) => {
   }
 };
 
-export const login = (req, res) => {
-  res.send('login user');
+export const login = async (req, res) => {
+  try {
+  } catch (error) {
+    console.log('error in login controller ', error.message);
+    res.status(500).json({ error: error.message });
+  }
 };
 
 export const logout = (req, res) => {
