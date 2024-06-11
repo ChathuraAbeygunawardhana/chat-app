@@ -12,7 +12,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon backend/server.js"
+    "server": "nodemon backend/server.js",
+    "frontend": "cd frontend && npm run dev"
   },
   "type": "module",
   "keywords": [],
