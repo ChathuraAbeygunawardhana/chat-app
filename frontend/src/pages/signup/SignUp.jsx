@@ -2,23 +2,27 @@
 import React from 'react';
 import GenderCheckBox from './GenderCheckBox';
 import { Link } from 'react-router-dom';
+import useSignUp from '../../hooks/useSignUp';
 
 const SignUp = () => {
   const [inputs, setInputs] = React.useState({
-    fullName: 'Default Full Name',
-    username: 'Default Username',
-    password: 'Default Password',
-    confirmPassword: 'Default Password',
-    gender: 'Default Gender',
+    fullName: 'Saman Kumara',
+    username: 'samankumara',
+    password: 'dexter123',
+    confirmPassword: 'dexter123',
+    gender: 'male',
   });
+
+  const { loading, signUp } = useSignUp();
 
   const handleCheckBoxChange = (gender) => {
     setInputs({ ...inputs, gender });
   };
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault();
-    console.log(JSON.stringify(inputs, null, 2));
+    console.log(JSON.stringify(inputs));
+    await signUp(inputs);
   };
 
   return (
@@ -88,7 +92,10 @@ const SignUp = () => {
               />
             </div>
             <div className='mt-5'>
-              <GenderCheckBox onCheckBoxChange={handleCheckBoxChange} />
+              <GenderCheckBox
+                onCheckBoxChange={handleCheckBoxChange}
+                selectedGender={inputs.gender}
+              />
             </div>
             <div>
               <button className='btn btn-block btn-sm  text-white h-10 mt-5'>

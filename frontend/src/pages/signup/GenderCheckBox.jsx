@@ -1,28 +1,30 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 
-const GenderCheckBox = () => {
-  const [gender, setGender] = useState('');
+const GenderCheckBox = ({ onCheckBoxChange, selectedGender }) => {
+  const handleGenderChange = (newGender) => {
+    onCheckBoxChange(newGender);
+  };
 
   return (
-    <div className='flex flex-row space-x-4'>
-      <label className='flex items-center space-x-3'>
+    <div className="flex flex-row space-x-4">
+      <label className="flex items-center space-x-3">
         <input
-          type='radio'
-          className='form-radio h-5 w-5 text-blue-600'
-          checked={gender === 'male'}
-          onChange={() => setGender('male')}
+          type="radio"
+          className="form-radio h-5 w-5 text-blue-600"
+          checked={selectedGender === 'male'}
+          onChange={() => handleGenderChange('male')}
         />
-        <span className='text-white'>Male</span>
+        <span className="text-white">Male</span>
       </label>
-      <label className='flex items-center space-x-3'>
+      <label className="flex items-center space-x-3">
         <input
-          type='radio'
-          className='form-radio h-5 w-5 text-blue-600'
-          checked={gender === 'female'}
-          onChange={() => setGender('female')}
+          type="radio"
+          className="form-radio h-5 w-5 text-blue-600"
+          checked={selectedGender === 'female'}
+          onChange={() => handleGenderChange('female')}
         />
-        <span className='text-white'>Female</span>
+        <span className="text-white">Female</span>
       </label>
     </div>
   );
